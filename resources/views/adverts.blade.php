@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('filters')
+@section('categories')
 <ul class="list-group">
     <li class="list-group-item"><a href="/home">Home</a></li>
     <li class="list-group-item"><a href="/adverts">All</a></li>
+
     @foreach($categories as $category)
         <li class="list-group-item"><a href="/adverts/{{$category->name}}">{{$category->name}}</a></li>
     @endforeach
@@ -15,7 +16,7 @@
     <ul class="nav">
       @foreach($locations as $loc)
         <div class="location-item">
-            <a class="nav-link" href="/adverts/location/{{$loc->Name}}">{{$loc->Name}}</a>
+            <a class="nav-link" href="{{'/adverts/'.($hasCategory ? $hasCategory : 'location').'/'.$loc->Name }}">{{$loc->Name}}</a>
         </div>
       @endforeach
     </ul>
@@ -44,6 +45,7 @@
             </div>
         </div>
         <div class="panel-footer">
+            {{$ads->links()}}
         </div>
     </div>
 @endsection
@@ -53,7 +55,7 @@
         <div class="row">
             <div class="col-md-2">
                 <div class="panel panel-default">
-                        @yield('filters')
+                        @yield('categories')
                 </div>
             </div>
             <div class="col-md-10">

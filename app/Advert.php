@@ -8,7 +8,7 @@ class Advert extends Model
 {
     // The table
     protected $table = 'adverts';
-    protected $fillable = array('user_id', 'category_id', 'title', 'body', 'image','price', 'expires_on');
+    protected $fillable = array('user_id', 'category_id','location_id', 'title', 'body', 'image','price', 'expires_on');
     // Get all active addslashes
 
     public static function active()
@@ -33,5 +33,10 @@ class Advert extends Model
     public function category()
     {
         return $this->belongsTo('Category');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('Location');
     }
 }

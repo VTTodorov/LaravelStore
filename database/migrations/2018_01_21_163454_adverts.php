@@ -24,11 +24,6 @@ class Adverts extends Migration
 
             $table->integer('category_id')->unsigned()->index();
 
-            // $table->foreign('categoty_id')
-            //       ->references('id')
-            //       ->on('categories')
-            //       ->onDelete('cascade');
-
             $table->text('title');
             $table->text('body');
             $table->boolean('isActive', 'true');

@@ -33,8 +33,38 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="price" class="col-md-4 control-label">Price</label>
+
+                            <div class="col-md-6">
+                                <input id="body" class="form-control" name="price" required></textarea>
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <label for="image" class="col-md-4 control-label">Select image to upload:</label>
+                          <label class="col-md-4 control-label" for="location">Location</label>
+                          <div class="col-md-6">
+                              <select class="form-control" name="location">
+                                @foreach($locations as $location)
+                                    <option value="{{$location->id}}">{{$location->Name}}</option>
+                                @endforeach
+                              </select>
+                          </div>
+                        </div>
+
+                         <div class="form-group">
+                           <label class="col-md-4 control-label"for="category">Category</label>
+                           <div class="col-md-6">
+                               <select class="form-control" name="category">
+                                   @foreach($categories as $category)
+                                       <option value="{{$category->id}}">{{$category->name}}</option>
+                                   @endforeach
+                               </select>
+                           </div>
+                         </div>
+
+                        <div class="form-group">
+                            <label for="image" class="col-md-4 control-label">Main picture:</label>
                             <div class="col-md-6">
 	                              <input type="file" name="image" id="image">
                             </div>

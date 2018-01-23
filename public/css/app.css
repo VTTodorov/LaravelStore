@@ -8,7 +8,7 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* CUSTOM CSS HERE */
-.panel-heading{
+.panel-footer{
     text-align: center;
 }
 
@@ -20,6 +20,30 @@
     padding: 10px;
 }
 
+.card-block{
+    word-break:break-all;
+white-space:normal;
+}
+
+.list-group-item.active a {
+    color: white;
+}
+
+a:visited{
+    color: black;
+}
+
+.list-group-item a{
+    color: black !important;
+}
+
+.nav{
+    text-align: center;
+}
+.location-item{
+    display: inline;
+    margin: 0 15px;
+}
 
 /* END CUSTOM CSS */
 html {

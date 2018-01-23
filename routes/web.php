@@ -19,7 +19,13 @@ Route::get('/', function (){
 
 Route::get('/home', 'AdvertsController@index');
 
-Route::get('/home/{category}', 'AdvertsController@index');
+Route::get('/adverts/location/{location}', 'AdvertsController@byLocation');
+
+Route::get('/adverts/{category}', 'AdvertsController@byCategory');
+
+Route::get('/adverts/{category}/{location}', 'AdvertsController@byCategoryLocation');
+
+Route::get('/adverts', 'AdvertsController@adverts');
 
 Route::get('/home/ads/{id}', 'AdvertsController@byID');
 
