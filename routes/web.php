@@ -17,7 +17,7 @@ Route::get('/', function (){
     return redirect('/home');
 });
 
-Route::get('/home', 'AdvertsController@index')->name('home');
+Route::get('/home', 'AdvertsController@index');
 
 Route::get('/home/{category}', 'AdvertsController@index');
 

@@ -26,12 +26,13 @@ class AdvertsController extends Controller
         if($category == null)
         {
             $ads = DB::table('adverts')->orderBy('category_id', 'created_at')->paginate(10);
-            return view('home', compact('ads', 'categories'));
+        }
+        else
+        {
+            $ads = DB::table('adverts')->where('category_id', '=', $category->id)->paginate(10);
         }
 
-        $ads = DB::table('adverts')->where('category_id', '=', $category->id)->paginate(10);
         return view('home', compact('ads', 'categories'));
-
     }
 
     public function new()
@@ -41,7 +42,7 @@ class AdvertsController extends Controller
 
     public function insert(Request $request)
     {
-        $path = $request->image->store('img','public');
+        $path = $request->image->store('image','images');
 
         $date = new DateTime();
         $date->add(new DateInterval('P30D'));
@@ -51,7 +52,7 @@ class AdvertsController extends Controller
             'category_id' => '1',
             'title' => request('title'),
             'body' => 'test body',
-            'image' => 'storage/'.$path,
+            'image' => $path,
             'price' => '100',
             'expires_on' => $date
         ]);

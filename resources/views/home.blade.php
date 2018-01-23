@@ -20,10 +20,10 @@
                 @foreach($ads as $key=>$ad)
                     <div class="col-md-2 {{$key % 5 == 0 ? 'col-md-offset-1' : ''}}">
                         <div class="card" style="100%">
-                          <img class="card-img-top" src="{{$ad->image}}" alt="Card image cap">
+                          <img class="card-img-top" src="{{URL::to('/').'/'.$ad->image}}" alt="Card image cap">
                           <div class="card-block">
                             <h4 class="card-title">{{$ad->title}}</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{$ad->body}}</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
                           </div>
                         </div>
