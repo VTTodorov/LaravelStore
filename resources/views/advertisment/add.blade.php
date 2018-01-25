@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.empty')
 
 @section('pagescript')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -8,7 +8,7 @@
 @section('content')
 
 @yield('pagescript')
-        <div class="col-md-10">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Create new advertisment</div>
                 <div>

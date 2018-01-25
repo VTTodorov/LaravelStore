@@ -8,60 +8,86 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* CUSTOM CSS HERE */
-.panel-footer{
+
+.more-info {
+    width: 100%;
+}
+
+.adv-header {
+    display: inline;
+}
+
+.adv-description {
+    clear: both;
+}
+
+.adv-date {
+    float: right;
+}
+
+.panel-body {
+    text-align: justify;
+}
+
+.panel-footer {
     text-align: center;
 }
-.panel-image{
+
+.panel-image {
+    text-align: center;
     margin: 0 auto;
     width: 250px;
     border: 1px solid gray;
     border-radius: 5px;
     padding: 10px;
 }
-.card-img-top{
-display: block;
-max-width: 100%;
-max-height: 100%;
-width: auto;
-height: auto;
+
+.card-img-top {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }
 
-.image-container{
+.image-container {
     max-width: 150px;
     min-width: 100px;
     height: 150px;
 }
 
-.card{
+.card {
     padding: 10px;
 }
 
-.card-block{
-    word-break:break-all;
-white-space:normal;
+.card-block {
+    word-break: break-all;
+    white-space: normal;
 }
 
 .list-group-item.active a {
     ccolor: black;
 }
 
-a:visited{
+a:visited {
     color: black;
 }
 
-.list-group-item a{
+.list-group-item a {
     color: black !important;
 }
 
-.nav{
+.nav {
     text-align: center;
 }
-.location-item{
+
+.location-item {
     display: inline;
     margin: 0 15px;
 }
 
 /* END CUSTOM CSS */
+
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -1889,8 +1915,7 @@ pre code {
     clear: both
 }
 
-.row {
-}
+.row {}
 
 .row:after, .row:before {
     content: " ";

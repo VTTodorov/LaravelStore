@@ -20,10 +20,10 @@ class AdvertsController extends Controller
      * @param type var Description
      * @return return type
      */
-    public function byID($adv)
+    public function byID($id)
     {
-        $categories = DB::table('categories')->find($adv);
-        return view('home', compact('adv','categories'));
+        $adv = DB::table('adverts')->where('id', '=', $id)->first();
+        return view('advertisment.view', compact('adv'));
     }
 
 

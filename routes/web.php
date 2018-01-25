@@ -27,7 +27,7 @@ Route::get('/adverts/{category}/{location}', 'AdvertsController@byCategoryLocati
 
 Route::get('/adverts', 'AdvertsController@adverts');
 
-Route::get('/home/ads/{id}', 'AdvertsController@byID');
+Route::get('/ads/{id}', 'AdvertsController@byID');
 
 Route::get('/new',[
     'as' => 'new',
