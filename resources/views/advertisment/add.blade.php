@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+@section('pagescript')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/add.blade.js"></script>
+@stop
 
+@section('content')
+
+@yield('pagescript')
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">Create new advertisment</div>
+                <div>
+                    <img src="" id="image-preview" width="200px" />
+                </div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="/addnew" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -66,7 +73,14 @@
                         <div class="form-group">
                             <label for="image" class="col-md-4 control-label">Main picture:</label>
                             <div class="col-md-6">
-	                              <input type="file" name="image" id="image">
+	                              <input type="file"  name="image" id="image">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" class="col-md-4 control-label">Other pictures (select multiple):</label>
+                            <div class="col-md-6">
+	                              <input type="file" multiple name="images[]" id="image">
                             </div>
                         </div>
 
@@ -81,6 +95,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

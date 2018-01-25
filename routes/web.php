@@ -29,6 +29,11 @@ Route::get('/adverts', 'AdvertsController@adverts');
 
 Route::get('/home/ads/{id}', 'AdvertsController@byID');
 
-Route::get('/new','AdvertsController@new');
+Route::get('/new',[
+    'as' => 'new',
+    'uses' => 'AdvertsController@new'
+])->middleware("admin");
 
 Route::post('/addnew', 'AdvertsController@insert');
+
+Route::post('/adverts/view', 'AdvertsController@view');

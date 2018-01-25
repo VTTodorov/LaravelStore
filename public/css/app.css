@@ -8,12 +8,32 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* CUSTOM CSS HERE */
+
+.panel{
+
+}
 .panel-footer{
     text-align: center;
 }
-
+.panel-image{
+    margin: 0 auto;
+    width: 250px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
 .card-img-top{
-    width: 150px;
+display: block;
+max-width: 100%;
+max-height: 100%;
+width: auto;
+height: auto;
+}
+
+.image-container{
+    max-width: 150px;
+    min-width: 100px;
+    height: 150px;
 }
 
 .card{
@@ -26,7 +46,7 @@ white-space:normal;
 }
 
 .list-group-item.active a {
-    color: white;
+    ccolor: black;
 }
 
 a:visited{

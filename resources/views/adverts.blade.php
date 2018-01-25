@@ -1,17 +1,5 @@
 @extends('layouts.app')
 
-@section('categories')
-<ul class="list-group">
-    <li class="list-group-item"><a href="/home">Home</a></li>
-    <li class="list-group-item"><a href="/adverts">All</a></li>
-
-    @foreach($categories as $category)
-        <li class="list-group-item"><a href="/adverts/{{$category->name}}">{{$category->name}}</a></li>
-    @endforeach
-</ul>
-
-@endsection
-
 @section('locations')
     <ul class="nav">
       @foreach($locations as $loc)
@@ -33,34 +21,26 @@
                 @foreach($ads as $key=>$ad)
                     <div class="col-md-2 {{$key % 5 == 0 ? 'col-md-offset-1' : ''}}">
                         <div class="card">
-                          <img class="card-img-top" src="{{URL::to('/').'/'.$ad->image}}" alt="Card image cap">
+                            <div class="image-container">
+                                <img class="card-img-top" src="{{URL::to('/').'/'.$ad->image}}" alt="Card image cap">
+                            </div>
                           <div class="card-block">
                             <h4 class="card-title">{{$ad->title}}</h4>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             <a href="#" class="btn btn-primary">Go somewhere</a>
+                            @if(Auth::user() && Auth::user()->isAdmin())
+                            <div style="position: absolute; top: 0;">
+                                <a href="/edit/{{$ad->id}}" class="btn" style="background-color: rgba(33,106,148,0.8)"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                            </div>
+                            @endif
                           </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div>#216a94
         <div class="panel-footer">
             {{$ads->links()}}
-        </div>
-    </div>
-@endsection
-
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                        @yield('categories')
-                </div>
-            </div>
-            <div class="col-md-10">
-                @yield ('adverts')
-            </div>
         </div>
     </div>
 @endsection

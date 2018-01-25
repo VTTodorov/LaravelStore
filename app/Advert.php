@@ -9,14 +9,13 @@ class Advert extends Model
     // The table
     protected $table = 'adverts';
     protected $fillable = array('user_id', 'category_id','location_id', 'title', 'body', 'image','price', 'expires_on');
-    // Get all active addslashes
-
+    // Get all active adds
     public static function active()
     {
         return static::where('isActive', 1)->get();
     }
 
-    // Get all user addslashes
+    // Get all user adds
 
     public static function byUser($user_id)
     {

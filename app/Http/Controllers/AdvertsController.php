@@ -12,13 +12,29 @@ use Input;
 
 class AdvertsController extends Controller
 {
-
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function byID($adv)
     {
         $categories = DB::table('categories')->find($adv);
         return view('home', compact('adv','categories'));
     }
 
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
 
     public function index()
     {
@@ -29,7 +45,16 @@ class AdvertsController extends Controller
         return view('home', compact('ads', 'categories', 'locations'));
     }
 
-    public function adverts(Category $category = null, Location $location = null)
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
+    public function adverts()
     {
         $categories = DB::table('categories')->get();
         $locations = DB::table('locations')->get();
@@ -39,6 +64,15 @@ class AdvertsController extends Controller
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
     }
 
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function byCategoryLocation(Category $category, Location $location)
     {
         $categories = DB::table('categories')->get();
@@ -50,6 +84,14 @@ class AdvertsController extends Controller
 
     }
 
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function byCategory(Category $category)
     {
         $categories = DB::table('categories')->get();
@@ -60,6 +102,15 @@ class AdvertsController extends Controller
         return view('adverts', compact('ads', 'categories', 'locations','hasCategory'));
     }
 
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function byLocation(Location $location)
     {
         $categories = DB::table('categories')->get();
@@ -70,6 +121,15 @@ class AdvertsController extends Controller
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
     }
 
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function new()
     {
         $categories = DB::table('categories')->get();
@@ -78,6 +138,15 @@ class AdvertsController extends Controller
         return view('advertisment.add', compact('categories', 'locations'));
     }
 
+
+    /**
+     * undocumented function summary
+     *
+     * Undocumented function long description
+     *
+     * @param type var Description
+     * @return return type
+     */
     public function insert(Request $request)
     {
         $path = $request->image->store('image','images');
@@ -85,7 +154,6 @@ class AdvertsController extends Controller
         $date = new DateTime();
         $date->add(new DateInterval('P30D'));
         $date = $date->format('Y-m-d h:m:s');
-
         Advert::create([
             'user_id' => '1',
             'category_id' => request('category'),
