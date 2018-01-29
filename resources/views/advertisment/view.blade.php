@@ -25,31 +25,33 @@
             </div>
             <span class='pull-right'><h3>{{$adv->price}}лв.</h3></span>
             <div class="row adv-description">
-                <div class="col-md-8">
+                <div class="col-md-7">
                         <h4>Description:</h4>
-                        <p>{{$adv->body}}</p>
+                        <div id="adv-body" data-adv-body="{{$adv->body}}">
+
+                        </div>
                 </div>
-                <div class="col-md-4">
-                            @foreach($pictures as $index=>$picture)
-                                @if(($index + 1) % 2 == 1)
-                                    <div class="row">
-                                        @if($index == 0)
-                                        <div class="col-md-6">
-                                            <li data-target="#carousel-adv-images" data-slide-to="{{$index + 1}}" style="list-style:none">
-                                                <img href="#" src="{{URL::to('/').'/'.$adv->image}}" class="image-thumbnail" alt="..." style="width:100%">
-                                            </li>
-                                        </div>
-                                        @endif
+                <div class="col-md-5">
+                    @foreach($pictures as $index=>$picture)
+                        @if(($index + 1) % 2 == 1)
+                            <div class="row">
+                                @if($index == 0)
+                                <div class="col-md-6">
+                                    <li data-target="#carousel-adv-images" data-slide-to="0" style="list-style:none">
+                                        <img href="#" src="{{URL::to('/').'/'.$adv->image}}" class="image-thumbnail" alt="..." style="width:100%">
+                                    </li>
+                                </div>
                                 @endif
-                                    <div class="col-md-6">
-                                        <li data-target="#carousel-adv-images" data-slide-to="{{$index + 1}}" style="list-style:none">
-                                            <img href="#" src="{{URL::to('/').'/'.$picture->image}}" class="image-thumbnail" alt="..." style="width:100%">
-                                        </li>
-                                    </div>
-                                @if(($index + 1) % 2 == 0)
-                                    </div>
-                                @endif
-                            @endforeach
+                        @endif
+                            <div class="col-md-6">
+                                <li data-target="#carousel-adv-images" data-slide-to="{{$index + 1}}" style="list-style:none">
+                                    <img href="#" src="{{URL::to('/').'/'.$picture->image}}" class="image-thumbnail" alt="..." style="width:100%">
+                                </li>
+                            </div>
+                        @if(($index + 1) % 2 == 0)
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
 

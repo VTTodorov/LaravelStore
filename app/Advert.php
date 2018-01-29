@@ -15,19 +15,13 @@ class Advert extends Model
         return static::where('isActive', 1)->get();
     }
 
-    // Get all user adds
 
-    public static function byUser($user_id)
+    public function getRouteKeyName()
     {
-        return static::where('user_id', $user_id)->get();
+        return "id";
     }
 
     // Create Relationships
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function category()
     {

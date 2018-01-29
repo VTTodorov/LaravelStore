@@ -1,6 +1,7 @@
 @extends('layouts.empty')
 
 @section('pagescript')
+    <script src="/js/laravel-ckeditor/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/add.blade.js"></script>
 @stop
@@ -36,10 +37,10 @@
                             <label for="body" class="col-md-4 control-label">Description</label>
 
                             <div class="col-md-6">
-                                <textarea id="body" class="form-control" name="body" required>{{ old('body') }}</textarea>
-                                @if ($errors->has('body'))
+                                <textarea id="ckbody" class="form-control" name="ckbody" required>{{ old('ckbody') }}</textarea>
+                                @if ($errors->has('ckbody'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('body') }}</strong>
+                                        <strong>{{ $errors->first('ckbody') }}</strong>
                                     </span>
                                 @endif
                             </div>

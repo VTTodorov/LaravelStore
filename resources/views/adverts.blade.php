@@ -26,9 +26,9 @@
                             </div>
                           <div class="card-block">
                             <h4 class="card-title">{{$ad->title}}</h4>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{$ad->body}}</p>
                             <a href="{{'/adv/'.$ad->id}}" class="btn btn-primary more-info">More info</a>
-                
+
                           </div>
                         </div>
                     </div>

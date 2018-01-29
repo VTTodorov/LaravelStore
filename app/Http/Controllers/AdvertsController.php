@@ -14,80 +14,69 @@ use Input;
 class AdvertsController extends Controller
 {
     /**
-     * undocumented function summary
+     * Preview one advert
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Advert $adv
      */
-    public function byID($id)
+    public function byID(Advert $adv)
     {
-        $adv = DB::table('adverts')->where('id', '=', $id)->first();
-        $pictures = DB::table('pictures')->where('add_id', '=', $id)->get();
+        $pictures = Picture::where('add_id', $adv->id)->get();
         return view('advertisment.view', compact('adv','pictures'));
     }
 
-    public function edit($id)
+    /**
+     * Edit advert
+     *
+     * @param Advert $adv
+     */
+    public function edit(Advert $adv)
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
-        $adv = DB::table('adverts')->where('id', '=', $id)->first();
-        $pictures = DB::table('pictures')->where('add_id', '=', $id)->get();
+        $categories = Category::get();
+        $locations = Location::get();
+        $pictures = Picture::where('add_id', $adv->id)->get();
         return view('advertisment.edit', compact('adv','categories','locations','pictures'));
     }
 
     /**
-     * undocumented function summary
+     * Shows home page
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
      */
-
     public function index()
     {
-        $categories = DB::table('categories')->get();
-        $ads = DB::table('adverts')->orderBy('created_at', 'desc')->limit(10)->get();
-        $locations = DB::table('locations')->get();
+        $categories = Category::get();
+        $ads = Advert::orderBy('created_at', 'desc')->limit(10)->get();
+        $locations = Location::get();
 
         return view('home', compact('ads', 'categories', 'locations'));
     }
 
 
     /**
-     * undocumented function summary
+     * Shows adverts page
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
      */
     public function adverts()
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
+        $categories = Category::get();
+        $locations = Location::get();
         $hasCategory = false;
-        $ads = DB::table('adverts')->orderBy('created_at', 'desc')->paginate(10);
+        $ads = Advert::orderBy('created_at', 'desc')->paginate(10);
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
     }
 
 
     /**
-     * undocumented function summary
+     * Shows adverts filtered by locationd and category
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Description $description
+     * @param Category $category
      */
     public function byCategoryLocation(Category $category, Location $location)
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
-        $ads = DB::table('adverts')->where([['location_id', '=', $location->id],['category_id', '=', $category->id]])->paginate(10);
+        $categories = Category::get();
+        $locations = Location::get();
+        $ads = Advert::where([['location_id', '=', $location->id],['category_id', '=', $category->id]])->paginate(10);
         $hasCategory = $category->name;
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
@@ -95,18 +84,15 @@ class AdvertsController extends Controller
     }
 
     /**
-     * undocumented function summary
+     * Shows adverts filtered by category
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Category $category
      */
     public function byCategory(Category $category)
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
-        $ads = DB::table('adverts')->where('category_id', '=', $category->id)->paginate(10);
+        $categories = Category::get();
+        $locations = Location::get();
+        $ads = Advert::where('category_id', '=', $category->id)->paginate(10);
         $hasCategory = $category->name;
 
         return view('adverts', compact('ads', 'categories', 'locations','hasCategory'));
@@ -114,18 +100,15 @@ class AdvertsController extends Controller
 
 
     /**
-     * undocumented function summary
+     * Shows adverts filtered by location
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Location $location
      */
     public function byLocation(Location $location)
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
-        $ads = DB::table('adverts')->where([['location_id', '=', $location->id]])->paginate(10);
+        $categories = Category::get();
+        $locations = Location::get();
+        $ads = Advert::where([['location_id', '=', $location->id]])->paginate(10);
         $hasCategory = false;
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
@@ -133,29 +116,22 @@ class AdvertsController extends Controller
 
 
     /**
-     * undocumented function summary
+     * Shows create new advert page
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
      */
     public function new()
     {
-        $categories = DB::table('categories')->get();
-        $locations = DB::table('locations')->get();
+        $categories = Category::get();
+        $locations = Location::get();
 
         return view('advertisment.add', compact('categories', 'locations'));
     }
 
 
     /**
-     * undocumented function summary
+     * Creates new advert
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Request $request
      */
     public function insert(Request $request)
     {
@@ -166,7 +142,7 @@ class AdvertsController extends Controller
 
         $request->validate([
             "title" => "required|min:3|max:30",
-            "body" =>"required|min:60|max:255",
+            "ckbody" =>"required|min:60|max:255",
             "image" =>"required|max:10240",
             "price" => "required|numeric",
         ]);
@@ -184,13 +160,15 @@ class AdvertsController extends Controller
         $advert->category_id = $request->category;
         $advert->location_id = $request->location;
         $advert->title       = $request->title;
-        $advert->body        = $request->body;
+        $advert->body        = $request->ckbody;
         $advert->image       = 'storage/'.$path;
         $advert->price       = $request->price;
         $advert->expires_on  = $date;
 
         $advert->save();
 
+
+        // Add new images
         foreach ($request->images as $key => $image) {
             $pic = new Picture;
 
@@ -204,30 +182,46 @@ class AdvertsController extends Controller
     }
 
     /**
-     * undocumented function summary
+     * Edits existing advert
      *
-     * Undocumented function long description
-     *
-     * @param type var Description
-     * @return return type
+     * @param Request $request
      */
     public function change(Request $request)
     {
-        dd($request->id);
-        $path = $request->image->store('image','images');
+        $adv = Advert::find($request->id);
 
+        $adv->title       = $request->name;
+        $adv->body        = $request->ckbody;
+        $adv->price       = $request->price;
+        $adv->category_id = $request->category;
+        $adv->location_id = $request->location;
 
-        Advert::create([
-            'user_id' => '1',
-            'category_id' => request('category'),
-            'location_id' => request('location'),
-            'title' => request('title'),
-            'body' => request('body'),
-            'image' => 'storage/'.$path,
-            'price' => request('price'),
-        ]);
+        // Check if profile picture has changed
+        if($request->image){
+            $adv->image   = 'storage/'.$request->image->store('image', 'images');
+        }
 
-        return redirect('/home');
+        // Check for deleted images
+        foreach ($request->images as $id) {
+            if($id){
+                $pic = Picture::find($id);
+                $pic->delete();
+            }
+        }
+
+        // Add new images
+        if ($request->new_images) {
+            foreach ($request->new_images as $key => $image) {
+                $pic = new Picture;
+                $pic->add_id = $adv->id;
+                $pic->image = 'storage/'.$image->store('image','images');
+                $pic->save();
+            }
+        }
+
+        $adv->save();
+
+        return redirect('/adv/'.$request->id);
     }
 
 }

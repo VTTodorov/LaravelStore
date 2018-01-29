@@ -27,9 +27,9 @@ Route::get('/adverts/{category}/{location}', 'AdvertsController@byCategoryLocati
 
 Route::get('/adverts', 'AdvertsController@adverts');
 
-Route::get('/adv/{id}', 'AdvertsController@byID');
+Route::get('/adv/{adv}', 'AdvertsController@byID');
 
-Route::get('/adv/{id}/edit', 'AdvertsController@edit');
+Route::get('/adv/{adv}/edit', 'AdvertsController@edit');
 
 
 Route::get('/new',[
