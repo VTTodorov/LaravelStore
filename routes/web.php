@@ -27,7 +27,10 @@ Route::get('/adverts/{category}/{location}', 'AdvertsController@byCategoryLocati
 
 Route::get('/adverts', 'AdvertsController@adverts');
 
-Route::get('/ads/{id}', 'AdvertsController@byID');
+Route::get('/adv/{id}', 'AdvertsController@byID');
+
+Route::get('/adv/{id}/edit', 'AdvertsController@edit');
+
 
 Route::get('/new',[
     'as' => 'new',
@@ -37,3 +40,5 @@ Route::get('/new',[
 Route::post('/addnew', 'AdvertsController@insert');
 
 Route::post('/adverts/view', 'AdvertsController@view');
+
+Route::post('/adv/{id}/change', 'AdvertsController@change');

@@ -1,6 +1,4 @@
 $( document ).ready(function() {
-
-
     function readURL(input) {
 
     if (input.files && input.files[0]) {
@@ -12,7 +10,7 @@ $( document ).ready(function() {
         reader.onload = function (e) {
 
             $('#image-preview').attr('src', e.target.result);
-            $('#image-preview').parent().addClass('panel-image img-thumbnail');
+            $('#image-preview').parent().addClass('panel-image');
 
         }
 
@@ -25,6 +23,7 @@ $( document ).ready(function() {
     $("#image").on('change',function(){
         readURL(this);
     });
-
+    
+    let editor = CKEDITOR.replace('adv-body');
 
 });

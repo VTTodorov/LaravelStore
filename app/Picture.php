@@ -9,6 +9,7 @@ class Picture extends Model
     //
     protected $table = 'pictures';
     protected $fillable = array('user_id', 'image');
+    public $timestamps = false;
 
     public function adverts()
     {

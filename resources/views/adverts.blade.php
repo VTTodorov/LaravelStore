@@ -27,18 +27,14 @@
                           <div class="card-block">
                             <h4 class="card-title">{{$ad->title}}</h4>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="{{'/ads/'.$ad->id}}" class="btn btn-primary more-info">More info</a>
-                            @if(Auth::user() && Auth::user()->isAdmin())
-                            <div style="position: absolute; top: 0;">
-                                <a href="/edit/{{$ad->id}}" class="btn" style="background-color: rgba(33,106,148,0.8)"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                            </div>
-                            @endif
+                            <a href="{{'/adv/'.$ad->id}}" class="btn btn-primary more-info">More info</a>
+                
                           </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-        </div>#216a94
+        </div>
         <div class="panel-footer">
             {{$ads->links()}}
         </div>
