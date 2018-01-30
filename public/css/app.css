@@ -8,6 +8,12 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* CUSTOM CSS HERE */
+.card-title{
+    height: 40px;
+    font-weight: bold;
+    word-break: normal;
+}
+
 .news-image{
     max-width: 250px;
     max-height: 250px;
