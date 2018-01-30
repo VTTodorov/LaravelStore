@@ -20,21 +20,27 @@ Route::get('/', function (){
 Route::get('/home', 'AdvertsController@index');
 
 Route::get('/adverts/location/{location}', 'AdvertsController@byLocation');
-
 Route::get('/adverts/{category}', 'AdvertsController@byCategory');
-
 Route::get('/adverts/{category}/{location}', 'AdvertsController@byCategoryLocation');
-
 Route::get('/adverts', 'AdvertsController@adverts');
-
 Route::get('/adv/{adv}', 'AdvertsController@byID');
-
 Route::get('/adv/{adv}/edit', 'AdvertsController@edit');
 
+Route::get('/news', 'NewsController@news');
+Route::get('/news/{news}', 'NewsController@byID');
+Route::get('/news/{news}/edit', 'NewsController@edit');
 
-Route::get('/new',[
-    'as' => 'new',
+
+
+
+Route::get('/new/advertisment',[
+    'as' => 'newAdvertisment',
     'uses' => 'AdvertsController@new'
+])->middleware("admin");
+
+Route::get('/new/news',[
+    'as' => 'newNews',
+    'uses' => 'NewsController@new'
 ])->middleware("admin");
 
 Route::post('/addnew', 'AdvertsController@insert');

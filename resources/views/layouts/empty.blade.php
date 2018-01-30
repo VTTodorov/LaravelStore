@@ -54,11 +54,23 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('new') }}">
-                                            New advertisment
-                                        </a>
-                                    </li>
+                                    @if(Auth::user()->isAdmin())
+                                        <li>
+                                            <a href="{{ route('newAdvertisment') }}">
+                                                Add Advertisment
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('newNews') }}">
+                                                Add News
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('newNews') }}">
+                                                Add Location
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

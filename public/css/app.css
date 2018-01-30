@@ -89,22 +89,36 @@
 }
 
 .image-container {
+    height: 150px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.big-image-container {
     height: 400px;
     width: 100%;
     margin: 0 auto;
 }
 
-.image-container img{
+.image-container img,
+.big-image-container img{
     max-height: 100%;
 }
 
 .card {
     padding: 10px;
+    background-color: #f5f8fa;
+    border: 1px solid #636b6f33;
 }
 
 .card-block {
     word-break: break-all;
     white-space: normal;
+}
+
+.card-text{
+    height: 150px;
+    overflow: hidden;
 }
 
 .list-group-item.active a {

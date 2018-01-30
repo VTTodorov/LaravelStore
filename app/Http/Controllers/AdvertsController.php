@@ -44,7 +44,7 @@ class AdvertsController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $ads = Advert::orderBy('created_at', 'desc')->limit(10)->get();
+        $ads = Advert::active();
         $locations = Location::get();
 
         return view('home', compact('ads', 'categories', 'locations'));
@@ -60,7 +60,7 @@ class AdvertsController extends Controller
         $categories = Category::get();
         $locations = Location::get();
         $hasCategory = false;
-        $ads = Advert::orderBy('created_at', 'desc')->paginate(10);
+        $ads = Advert::active(true);
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
     }
@@ -76,7 +76,7 @@ class AdvertsController extends Controller
     {
         $categories = Category::get();
         $locations = Location::get();
-        $ads = Advert::where([['location_id', '=', $location->id],['category_id', '=', $category->id]])->paginate(10);
+        $ads = Advert::byCategoryLocation($category->id, $location->id);
         $hasCategory = $category->name;
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
@@ -92,7 +92,7 @@ class AdvertsController extends Controller
     {
         $categories = Category::get();
         $locations = Location::get();
-        $ads = Advert::where('category_id', '=', $category->id)->paginate(10);
+        $ads = Advert::byCategory($category->id);
         $hasCategory = $category->name;
 
         return view('adverts', compact('ads', 'categories', 'locations','hasCategory'));
@@ -108,7 +108,7 @@ class AdvertsController extends Controller
     {
         $categories = Category::get();
         $locations = Location::get();
-        $ads = Advert::where([['location_id', '=', $location->id]])->paginate(10);
+        $ads = Advert::byLocation($location->id);
         $hasCategory = false;
 
         return view('adverts', compact('ads', 'categories', 'locations', 'hasCategory'));
@@ -169,13 +169,15 @@ class AdvertsController extends Controller
 
 
         // Add new images
-        foreach ($request->images as $key => $image) {
-            $pic = new Picture;
+        if($request->images){
+            foreach ($request->images as $key => $image) {
+                $pic = new Picture;
 
-            $pic->add_id = $advert->id;
-            $pic->image = 'storage/'.$image->store('image','images');
+                $pic->add_id = $advert->id;
+                $pic->image = 'storage/'.$image->store('image','images');
 
-            $pic->save();
+                $pic->save();
+            }
         }
 
         return redirect('/home');
@@ -202,10 +204,12 @@ class AdvertsController extends Controller
         }
 
         // Check for deleted images
-        foreach ($request->images as $id) {
-            if($id){
-                $pic = Picture::find($id);
-                $pic->delete();
+        if ($request->images) {
+            foreach ($request->images as $id) {
+                if($id){
+                    $pic = Picture::find($id);
+                    $pic->delete();
+                }
             }
         }
 

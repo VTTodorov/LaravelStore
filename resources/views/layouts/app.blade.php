@@ -54,11 +54,23 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('new') }}">
-                                            New advertisment
-                                        </a>
-                                    </li>
+                                    @if(Auth::user()->isAdmin())
+                                        <li>
+                                            <a href="{{ route('newAdvertisment') }}">
+                                                Add Advertisment
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('newNews') }}">
+                                                Add News
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('newNews') }}">
+                                                Add Location
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -83,7 +95,9 @@
                     <div class="panel panel-default">
                         <ul class="list-group">
                             <li class="list-group-item"><a href="/home">Home</a></li>
+                            <li class="list-group-item"><a href="/news">News</a></li>
                             <li class="list-group-item"><a href="/adverts">All</a></li>
+
 
                             @foreach($categories as $category)
                                 <li class="list-group-item"><a href="/adverts/{{$category->name}}">{{$category->name}}</a></li>
@@ -92,7 +106,7 @@
                     </div>
                 </div>
                 <div class="col-md-10">
-                    @yield ('adverts')  
+                    @yield ('adverts')
                     @yield('content')
                 </div>
             </div>

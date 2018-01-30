@@ -10,7 +10,13 @@
     </ul>
 @endsection
 
+@section('pagescript')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/nohtml.js"></script>
+@stop
+
 @section('adverts')
+@yield('pagescript')
     <div class="panel panel-default">
         <div class="panel-heading">
             @yield('locations')

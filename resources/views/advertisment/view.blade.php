@@ -1,4 +1,5 @@
-@extends('layouts.empty') @section('content')
+@extends('layouts.empty')
+@section('content')
 <script src="/js/laravel-ckeditor/ckeditor.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/js/view.blade.js"></script>
@@ -13,11 +14,11 @@
             <div id="carousel-adv-images" class="carousel slide panel-image" data-ride="carousel" data-interval="false">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active image-container">
+                    <div class="item active big-image-container">
                         <img src="{{URL::to('/').'/'.$adv->image}}" alt="...">
                     </div>
                     @foreach ($pictures as $picture)
-                    <div class="item image-container">
+                    <div class="item big-image-container">
                         <img src="{{URL::to('/').'/'.$picture->image}}" alt="...">
                     </div>
                     @endforeach

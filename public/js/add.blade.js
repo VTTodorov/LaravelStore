@@ -12,7 +12,7 @@ $( document ).ready(function() {
         reader.onload = function (e) {
 
             $('#image-preview').attr('src', e.target.result);
-            $('#image-preview').parent().addClass('panel-image img-thumbnail');
+            $('#image-preview').parent().addClass('big-image-container');
 
         }
 

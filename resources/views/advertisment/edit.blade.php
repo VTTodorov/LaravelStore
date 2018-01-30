@@ -17,14 +17,14 @@
             <div id="carousel-adv-images" class="carousel slide panel-image" data-ride="carousel" data-interval="false">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active image-container">
+                    <div class="item active big-image-container">
                         <img src="{{URL::to('/').'/'.$adv->image}}" id="image-preview">
                         <div class="image-controls">
                             <label for="image"><i class="fas fa-edit fa-2x"></i></label>
                         </div>
                     </div>
                     @foreach ($pictures as $picture)
-                    <div class="item image-container">
+                    <div class="item big-image-container">
                         <img src="{{URL::to('/').'/'.$picture->image}}">
                         <div class="image-controls delete-picture">
                             <i class="fas fa-trash fa-2x" id="{{$picture->id}}"></i>
