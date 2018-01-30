@@ -8,6 +8,13 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 /* CUSTOM CSS HERE */
+.news-image{
+    max-width: 250px;
+    max-height: 250px;
+    float:left;
+    margin-right: 10px;
+}
+
 .image-list{
     display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
      display: -moz-box;         /* OLD - Firefox 19- */
@@ -109,6 +116,7 @@
     padding: 10px;
     background-color: #f5f8fa;
     border: 1px solid #636b6f33;
+    margin-bottom: 10px;
 }
 
 .card-block {
@@ -122,7 +130,7 @@
 }
 
 .list-group-item.active a {
-    ccolor: black;
+    color: black;
 }
 
 a:visited {

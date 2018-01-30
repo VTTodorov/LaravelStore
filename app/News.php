@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     protected $table = 'news';
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'image'];
+    public $timestamps = false;
 
     //get all news
     public static function active()

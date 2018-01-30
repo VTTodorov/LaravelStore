@@ -190,17 +190,32 @@ class AdvertsController extends Controller
      */
     public function change(Request $request)
     {
+
+        //validations
+        $validator = \Validator::make($request->all(), [
+            'new_images' => 'required|image|size:10240',
+        ]);
+
+        $request->validate([
+            "title" => "required|min:3|max:30",
+            "ckbody" =>"required|min:60|max:255",
+            "image" =>"max:10240",
+            "price" => "required|numeric",
+        ]);
+
         $adv = Advert::find($request->id);
 
-        $adv->title       = $request->name;
+        $adv->title       = $request->title;
         $adv->body        = $request->ckbody;
         $adv->price       = $request->price;
         $adv->category_id = $request->category;
         $adv->location_id = $request->location;
 
         // Check if profile picture has changed
-        if($request->image){
-            $adv->image   = 'storage/'.$request->image->store('image', 'images');
+        if ($request->image) {
+            if($request->image){
+                $adv->image   = 'storage/'.$request->image->store('image', 'images');
+            }
         }
 
         // Check for deleted images

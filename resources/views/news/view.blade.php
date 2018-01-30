@@ -7,7 +7,8 @@
         <h2>{{$news->title}}</h2>
     </div>
     <div class="panel-body">
-        {{$news->body}}
+        <img src="{{URL::to('/').'/'.$news->image}}" class="news-image img-thumbnail">
+        <p>{{$news->body}}</p>
     </div>
 </div>
 @endsection

@@ -51,7 +51,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Full name</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="name" id="name" / value="{{$adv->title}}">
+                            <input type="text" class="form-control" name="title" id="title" / value="{{$adv->title}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -91,10 +91,10 @@
                     <div class="form-group">
                         <label for="image" class="col-md-4 control-label">Other pictures (select multiple):</label>
                         <div class="col-md-6">
-                              <input type="file" multiple name="new_images[]" id="images" value="{{ old('images')}}">
-                              @if ($errors->has('images[]'))
+                              <input type="file" multiple name="new_images[]" id="new_images" value="{{ old('new_images')}}">
+                              @if ($errors->has('new_images[]'))
                                   <span class="help-block">
-                                      <strong>{{ $errors->first('images') }}</strong>
+                                      <strong>{{ $errors->first('new_images') }}</strong>
                                   </span>
                               @endif
                         </div>

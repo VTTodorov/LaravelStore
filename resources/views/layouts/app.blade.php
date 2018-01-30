@@ -66,7 +66,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('newNews') }}">
+                                            <a href="{{ route('newLocation') }}">
                                                 Add Location
                                             </a>
                                         </li>

@@ -8,6 +8,8 @@ class Location extends Model
 {
     //
     protected $table = 'locations';
+    protected $fillable = ['name'];
+    public $timestamps = false;
 
     public function adverts()
     {

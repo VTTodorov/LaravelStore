@@ -43,6 +43,15 @@ Route::get('/new/news',[
     'uses' => 'NewsController@new'
 ])->middleware("admin");
 
+Route::get('/new/location',[
+    'as' => 'newLocation',
+    'uses' => 'LocationController@new'
+])->middleware("admin");
+
+Route::post('/new/news/insert', 'NewsController@insert');
+
+Route::post('/new/location/insert', 'LocationController@insert');
+
 Route::post('/addnew', 'AdvertsController@insert');
 
 Route::post('/adverts/view', 'AdvertsController@view');
