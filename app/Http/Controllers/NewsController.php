@@ -27,13 +27,13 @@ class NewsController extends Controller
         return view('news.add', compact('categories'));
     }
 
-    // Insert into Database
+// Insert into Database
     public function insert(Request $request)
     {
         $request->validate([
             "title" => "required|min:3|max:30",
-            "ckbody" =>"required|min:60|max:255",
-            "image" =>"required|max:10240"
+            "description" =>"required|min:60|max:255",
+            "image" =>"required|image|max:10240"
         ]);
 
         $path = $request->image->store('image','images');
@@ -41,7 +41,7 @@ class NewsController extends Controller
         $news = new News;
 
         $news->title = $request->title;
-        $news->body  = $request->ckbody;
+        $news->body  = $request->description;
         $news->image = 'storage/'.$path;
 
         $news->save();

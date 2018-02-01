@@ -137,7 +137,11 @@ class AdvertsController extends Controller
     {
         //validations
         $validator = \Validator::make($request->all(), [
-            'images.*' => 'image|size:10240',
+            'images.*' => 'image|max:10240',
+            "title" => "required|min:3|max:30",
+            "description" =>"required|min:60|max:255",
+            "image" =>"required|image|max:10240",
+            "price" => "required|numeric",
         ]);
 
         if ($validator->fails()) {
@@ -145,13 +149,6 @@ class AdvertsController extends Controller
                        ->withErrors($validator)
                        ->withInput();
        }
-
-        $request->validate([
-            "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
-            "image" =>"required|image|max:10240",
-            "price" => "required|numeric",
-        ]);
 
         $path = $request->image->store('image','images');
 

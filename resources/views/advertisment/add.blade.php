@@ -18,15 +18,7 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="/addnew" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             <label for="title" class="col-md-4 control-label">Title</label>
 
@@ -46,9 +38,9 @@
 
                             <div class="col-md-6">
                                 <textarea id="description" class="form-control" name="description" required>{{ old('description') }}</textarea>
-                                @if ($errors->has('ckbody'))
+                                @if ($errors->has('description'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('ckbody') }}</strong>
+                                        <strong>{{ $errors->first('description') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -105,9 +97,9 @@
                             <label for="image" class="col-md-4 control-label">Other pictures (select multiple):</label>
                             <div class="col-md-6">
 	                              <input type="file" multiple name="images[]" id="images">
-                                  @if ($errors->has('images[]'))
+                                  @if ($errors->has('images.*'))
                                       <span class="help-block">
-                                          <strong>{{ $errors->first('images') }}</strong>
+                                          <strong>{{ $errors->first('images.*') }}</strong>
                                       </span>
                                   @endif
                             </div>

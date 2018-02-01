@@ -1,7 +1,14 @@
 @extends('layouts.empty')
 
+@section('pagescript')
+    <script src="/js/laravel-ckeditor/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/news.blade.js"></script>
+@stop
 
 @section('content')
+@yield('pagescript')
+
 <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-default">
         <div class="panel-heading">Add news</div>
