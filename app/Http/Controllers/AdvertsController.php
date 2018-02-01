@@ -137,13 +137,19 @@ class AdvertsController extends Controller
     {
         //validations
         $validator = \Validator::make($request->all(), [
-            'pictures' => 'required|image|size:10240',
+            'images.*' => 'image|size:10240',
         ]);
+
+        if ($validator->fails()) {
+           return redirect('new/advertisment')
+                       ->withErrors($validator)
+                       ->withInput();
+       }
 
         $request->validate([
             "title" => "required|min:3|max:30",
-            "ckbody" =>"required|min:60|max:255",
-            "image" =>"required|max:10240",
+            "description" =>"required|min:60|max:255",
+            "image" =>"required|image|max:10240",
             "price" => "required|numeric",
         ]);
 
@@ -156,11 +162,10 @@ class AdvertsController extends Controller
 
         $advert = new Advert;
 
-        $advert->user_id = 1;
         $advert->category_id = $request->category;
         $advert->location_id = $request->location;
         $advert->title       = $request->title;
-        $advert->body        = $request->ckbody;
+        $advert->body        = $request->description;
         $advert->image       = 'storage/'.$path;
         $advert->price       = $request->price;
         $advert->expires_on  = $date;
@@ -190,23 +195,10 @@ class AdvertsController extends Controller
      */
     public function change(Request $request)
     {
-
-        //validations
-        $validator = \Validator::make($request->all(), [
-            'new_images' => 'required|image|size:10240',
-        ]);
-
-        $request->validate([
-            "title" => "required|min:3|max:30",
-            "ckbody" =>"required|min:60|max:255",
-            "image" =>"max:10240",
-            "price" => "required|numeric",
-        ]);
-
         $adv = Advert::find($request->id);
 
         $adv->title       = $request->title;
-        $adv->body        = $request->ckbody;
+        $adv->body        = $request->description;
         $adv->price       = $request->price;
         $adv->category_id = $request->category;
         $adv->location_id = $request->location;

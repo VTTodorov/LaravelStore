@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label">Description</label>
                         <div class="col-xs-8">
-                            <textarea name="ckbody" id="ckbody">{{$adv->body}}</textarea>
+                            <textarea name="description" id="description">{{$adv->body}}</textarea>
                         </div>
                     </div>
 

@@ -27,10 +27,10 @@
                     <label for="body" class="col-md-4 control-label">Description</label>
 
                     <div class="col-md-6">
-                        <textarea id="ckbody" class="form-control" name="ckbody" required>{{ old('ckbody') }}</textarea>
-                        @if ($errors->has('ckbody'))
+                        <textarea id="description" class="form-control" name="description" required>{{ old('description') }}</textarea>
+                        @if ($errors->has('description'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('ckbody') }}</strong>
+                                <strong>{{ $errors->first('description') }}</strong>
                             </span>
                         @endif
                     </div>

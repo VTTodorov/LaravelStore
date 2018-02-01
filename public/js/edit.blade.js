@@ -23,7 +23,7 @@ $( document ).ready(function() {
         readURL(this);
     });
 
-    let editor = CKEDITOR.replace('ckbody');
+    let editor = CKEDITOR.replace('description');
 
     $(".delete-picture").on('click','i',function (e) {
         let id = $(this).attr('id');

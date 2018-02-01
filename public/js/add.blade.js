@@ -26,5 +26,5 @@ $( document ).ready(function() {
         readURL(this);
     });
 
-    // CKEDITOR.replace('ckbody');
+    CKEDITOR.replace('description');
 });

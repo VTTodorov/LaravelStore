@@ -105,17 +105,20 @@
     height: 150px;
     width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .big-image-container {
     height: 400px;
     width: 100%;
     margin: 0 auto;
+    text-align: center;
 }
 
 .image-container img,
 .big-image-container img{
     max-height: 100%;
+    margin: 0 auto;
 }
 
 .card {
@@ -6528,6 +6531,7 @@ button.close {
     display: block;
     max-width: 100%;
     line-height: 1
+    margin: 0 auto;
 }
 
 @media (-webkit-transform-3d), (transform-3d) {
