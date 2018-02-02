@@ -21,7 +21,6 @@
 
                     <div class="col-md-6">
                         <input id="title" type="text" class="form-control" name="title" required autofocus value="{{old('title')}}">
-
                         @if ($errors->has('title'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('title') }}</strong>

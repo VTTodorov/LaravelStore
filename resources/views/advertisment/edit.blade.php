@@ -52,12 +52,22 @@
                         <label class="col-md-4 control-label">Full name</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="title" id="title" / value="{{$adv->title}}">
+                            @if ($errors->has('title'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Price</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" name="price" id="price" / value="{{$adv->price}}">
+                            @if ($errors->has('price'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('price') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -85,16 +95,21 @@
                         <label class="col-md-4 control-label">Description</label>
                         <div class="col-xs-8">
                             <textarea name="description" id="description">{{$adv->body}}</textarea>
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="image" class="col-md-4 control-label">Other pictures (select multiple):</label>
                         <div class="col-md-6">
-                              <input type="file" multiple name="new_images[]" id="new_images" value="{{ old('new_images')}}">
-                              @if ($errors->has('new_images[]'))
+                              <input type="file" multiple name="new_images[]" id="new_images">
+                              @if ($errors->has('new_images.*'))
                                   <span class="help-block">
-                                      <strong>{{ $errors->first('new_images') }}</strong>
+                                      <strong>{{ $errors->first('new_images.*') }}</strong>
                                   </span>
                               @endif
                         </div>

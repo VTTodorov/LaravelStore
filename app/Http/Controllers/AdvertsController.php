@@ -135,14 +135,7 @@ class AdvertsController extends Controller
      */
     public function insert(Request $request)
     {
-        //validations
-        $validator = \Validator::make($request->all(), [
-            'images.*' => 'image|max:10240',
-            "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
-            "image" =>"required|image|max:10240",
-            "price" => "required|numeric",
-        ]);
+        $validator = $this->validateAdvert($request);
 
         if ($validator->fails()) {
            return redirect('new/advertisment')
@@ -192,6 +185,14 @@ class AdvertsController extends Controller
      */
     public function change(Request $request)
     {
+        $validator = $this->validateEdit($request);
+
+        if ($validator->fails()) {
+           return redirect('adv/'.$request->id.'/edit')
+                       ->withErrors($validator)
+                       ->withInput();
+        }
+
         $adv = Advert::find($request->id);
 
         $adv->title       = $request->title;
@@ -230,6 +231,28 @@ class AdvertsController extends Controller
         $adv->save();
 
         return redirect('/adv/'.$request->id);
+    }
+
+    function validateAdvert(Request $request)
+    {
+        return \Validator::make($request->all(), [
+            'images.*' => 'image|max:10240',
+            "title" => "required|min:3|max:30",
+            "description" =>"required|min:60|max:255",
+            "image" =>"required|image|max:10240",
+            "price" => "required|numeric",
+        ]);
+    }
+
+    function validateEdit(Request $request)
+    {
+        return \Validator::make($request->all(), [
+            'new_images.*' => 'image|max:10240',
+            "title" => "required|min:3|max:30",
+            "description" =>"required|min:60|max:255",
+            "image" =>"image|max:10240",
+            "price" => "required|numeric",
+        ]);
     }
 
 }

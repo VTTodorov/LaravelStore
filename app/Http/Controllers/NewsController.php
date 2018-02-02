@@ -30,11 +30,13 @@ class NewsController extends Controller
 // Insert into Database
     public function insert(Request $request)
     {
-        $request->validate([
-            "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
-            "image" =>"required|image|max:10240"
-        ]);
+        $validator = $this->validateNews($request);
+
+        if($validator->fails()){
+            return redirect('new/news')
+                       ->withErrors($validator)
+                       ->withInput();
+        }
 
         $path = $request->image->store('image','images');
 
@@ -47,5 +49,14 @@ class NewsController extends Controller
         $news->save();
 
         return redirect('/news/'.$request->id);
+    }
+
+    function validateNews(Request $request)
+    {
+        return \Validator::make($request->all(),[
+            "title" => "required|min:3|max:30",
+            "description" =>"required|min:60|max:255",
+            "image" =>"required|image|max:10240"
+        ]);
     }
 }
