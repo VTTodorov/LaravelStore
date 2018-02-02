@@ -97,11 +97,10 @@
                             <li class="list-group-item"><a href="/home">Home</a></li>
                             <li class="list-group-item"><a href="/news">News</a></li>
                             <li class="list-group-item"><a href="/adverts">All</a></li>
-
-
                             @foreach($categories as $category)
                                 <li class="list-group-item"><a href="/adverts/{{$category->name}}">{{$category->name}}</a></li>
                             @endforeach
+                            <li class="list-group-item"><a href="/contact">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>

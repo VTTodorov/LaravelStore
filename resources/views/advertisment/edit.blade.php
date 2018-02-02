@@ -12,7 +12,7 @@
             <h3 class="adv-header">{{$adv->title}}</h3> <span class="pull-right">{{$adv->created_at}}</span>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" method="POST" action="/adv/{{$adv->id}}/change" enctype="multipart/form-data">
+            <form class="form-horizontal" method="POST" action="/adv/{{$adv->id}}/update" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div id="carousel-adv-images" class="carousel slide panel-image" data-ride="carousel" data-interval="false">
                 <!-- Wrapper for slides -->
@@ -43,9 +43,6 @@
                     <img href="#" src="{{URL::to('/').'/'.$picture->image}}" class="image-thumbnail" alt="..." style="width:100%">
                 </div>
                 @endforeach
-            </div>
-            <div class="">
-
             </div>
                 <div class="adv-edit">
                     <div class="form-group">

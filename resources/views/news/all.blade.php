@@ -9,7 +9,7 @@
     <div class="panel-body">
         <ul style="list-style:none">
             @foreach($news as $n)
-                <a href="/news/{{$n->id}}"> <li>{{$n->title}}</li></a>
+                <a href="/news/{{$n->id}}"> <li><h3>{{$n->title}}</h3></li></a>
             @endforeach
         </ul>
     </div>

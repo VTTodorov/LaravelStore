@@ -24,10 +24,15 @@ class NewsController extends Controller
     // Create news
     public function new()
     {
-        return view('news.add', compact('categories'));
+        return view('news.add');
     }
 
-// Insert into Database
+    public function edit(News $news)
+    {
+        return view('news.edit', compact('news'));
+    }
+
+    // Insert into Database
     public function insert(Request $request)
     {
         $validator = $this->validateNews($request);
@@ -43,7 +48,7 @@ class NewsController extends Controller
         $news = new News;
 
         $news->title = $request->title;
-        $news->body  = $request->description;
+        $news->body  = $request->body;
         $news->image = 'storage/'.$path;
 
         $news->save();
@@ -51,11 +56,44 @@ class NewsController extends Controller
         return redirect('/news/'.$request->id);
     }
 
+    // Edit
+    public function update(Request $request)
+    {
+        $validator = $this->validateNewsEdit($request);
+
+        if($validator->fails()){
+            return redirect('/news/'.$request->news.'/edit')
+                       ->withErrors($validator)
+                       ->withInput();
+        }
+
+        $news = News::find($request->news);
+        $news->title = $request->title;
+        $news->body  = $request->body;
+
+        if($request->image){
+            $news->image = 'storage/'.$path;
+        }
+
+        $news->save();
+
+        return redirect('/news/'.$request->news);
+    }
+
+    function validateNewsEdit(Request $request)
+    {
+        return \Validator::make($request->all(),[
+            "title" => "required|min:3|max:30",
+            "body" =>"required|min:60|max:500",
+            "image" =>"image|max:10240"
+        ]);
+    }
+
     function validateNews(Request $request)
     {
         return \Validator::make($request->all(),[
             "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
+            "body" =>"required|min:60|max:500",
             "image" =>"required|image|max:10240"
         ]);
     }

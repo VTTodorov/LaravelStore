@@ -10,5 +10,10 @@
         <img src="{{URL::to('/').'/'.$news->image}}" class="news-image img-thumbnail">
         <p>{{$news->body}}</p>
     </div>
+    @if(Auth::user() && Auth::user()->isAdmin())
+    <div class="panel-footer">
+        <a href="{{URL::to('/').'/news/'.$news->id.'/edit'}}">Edit</a>
+    </div>
+    @endif
 </div>
 @endsection

@@ -16,7 +16,7 @@
                     <img src="" id="image-preview"/>
                 </div>
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="/addnew" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="/new/adverts/insert" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">

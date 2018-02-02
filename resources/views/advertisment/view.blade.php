@@ -31,36 +31,35 @@
                         <div id="adv-body" data-adv-body="{{$adv->body}}">
 
                         </div>
+                        <div class="pull-right">
+                            <p>Expires on: {{$adv->expires_on}}</p>
+                        </div>
                 </div>
                 <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-md-6 image-container">
+                            <li data-target="#carousel-adv-images" data-slide-to="0" style="list-style:none">
+                                <img href="#" src="{{URL::to('/').'/'.$adv->image}}" class="image-thumbnail" alt="..." style="width:100%">
+                            </li>
+                        </div>
                     @foreach($pictures as $index=>$picture)
-                        @if(($index + 1) % 2 == 1)
-                            <div class="row">
-                                @if($index == 0)
-                                <div class="col-md-6">
-                                    <li data-target="#carousel-adv-images" data-slide-to="0" style="list-style:none">
-                                        <img href="#" src="{{URL::to('/').'/'.$adv->image}}" class="image-thumbnail" alt="..." style="width:100%">
-                                    </li>
-                                </div>
-                                @endif
-                        @endif
-                            <div class="col-md-6">
-                                <li data-target="#carousel-adv-images" data-slide-to="{{$index + 1}}" style="list-style:none">
-                                    <img href="#" src="{{URL::to('/').'/'.$picture->image}}" class="image-thumbnail" alt="..." style="width:100%">
-                                </li>
-                            </div>
-                        @if(($index + 1) % 2 == 0)
-                            </div>
-                        @endif
+                        <div class="col-md-6 image-container">
+                            <li data-target="#carousel-adv-images" data-slide-to="{{$index + 1}}" style="list-style:none">
+                                <img href="#" src="{{URL::to('/').'/'.$picture->image}}" class="image-thumbnail" alt="..." style="width:100%">
+                            </li>
+                        </div>
                     @endforeach
+                </div>
                 </div>
             </div>
 
         </div>
         <div class="panel-footer">
             @if(Auth::user() && Auth::user()->isAdmin())
-            <a href="{{URL::to('/').'/adv/'.$adv->id.'/edit'}}">Edit</a> @else
-            <button type="button" class="btn btn-primary" name="button">Add to cart</button> @endif
+            <a href="{{URL::to('/').'/adv/'.$adv->id.'/edit'}}">Edit</a>
+            @else
+            <button type="button" class="btn btn-primary" name="button">Add to cart</button>
+            @endif
         </div>
     </div>
 </div>

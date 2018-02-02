@@ -30,7 +30,7 @@ Route::get('/news', 'NewsController@news');
 Route::get('/news/{news}', 'NewsController@byID');
 Route::get('/news/{news}/edit', 'NewsController@edit');
 
-
+Route::get('/contact', 'HomeController@contact');
 
 
 Route::get('/new/advertisment',[
@@ -52,8 +52,10 @@ Route::post('/new/news/insert', 'NewsController@insert');
 
 Route::post('/new/location/insert', 'LocationController@insert');
 
-Route::post('/addnew', 'AdvertsController@insert');
+Route::post('/new/adverts/insert', 'AdvertsController@insert');
 
 Route::post('/adverts/view', 'AdvertsController@view');
 
-Route::post('/adv/{id}/change', 'AdvertsController@change');
+Route::post('/adv/{id}/update', 'AdvertsController@update');
+
+Route::post('/news/{news}/update', 'NewsController@update');

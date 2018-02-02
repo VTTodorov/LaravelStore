@@ -183,7 +183,7 @@ class AdvertsController extends Controller
      *
      * @param Request $request
      */
-    public function change(Request $request)
+    public function update(Request $request)
     {
         $validator = $this->validateEdit($request);
 
