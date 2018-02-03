@@ -238,7 +238,7 @@ class AdvertsController extends Controller
         return \Validator::make($request->all(), [
             'images.*' => 'image|max:10240',
             "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
+            "description" =>"required|min:60|max:500",
             "image" =>"required|image|max:10240",
             "price" => "required|numeric",
         ]);
@@ -249,7 +249,7 @@ class AdvertsController extends Controller
         return \Validator::make($request->all(), [
             'new_images.*' => 'image|max:10240',
             "title" => "required|min:3|max:30",
-            "description" =>"required|min:60|max:255",
+            "description" =>"required|min:60|max:500",
             "image" =>"image|max:10240",
             "price" => "required|numeric",
         ]);

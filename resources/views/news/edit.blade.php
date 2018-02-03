@@ -1,7 +1,13 @@
 @extends('layouts.empty')
-
+@section('pagescript')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/js/news.blade.js"></script>
+@stop
 
 @section('content')
+@yield('pagescript')
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>{{$news->title}}</h2>
@@ -25,10 +31,10 @@
             <div class="form-group">
                 <label class="col-md-4 control-label">Description</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="body" id="body"  value="{{$news->body}}">
-                    @if ($errors->has('body'))
+                    <textarea name="description" id="description">{{$news->body}}</textarea>
+                    @if ($errors->has('description'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('body') }}</strong>
+                            <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
                 </div>

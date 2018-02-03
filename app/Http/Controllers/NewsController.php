@@ -48,7 +48,7 @@ class NewsController extends Controller
         $news = new News;
 
         $news->title = $request->title;
-        $news->body  = $request->body;
+        $news->body  = $request->description;
         $news->image = 'storage/'.$path;
 
         $news->save();
@@ -69,7 +69,7 @@ class NewsController extends Controller
 
         $news = News::find($request->news);
         $news->title = $request->title;
-        $news->body  = $request->body;
+        $news->body  = $request->description;
 
         if($request->image){
             $news->image = 'storage/'.$path;
@@ -84,7 +84,7 @@ class NewsController extends Controller
     {
         return \Validator::make($request->all(),[
             "title" => "required|min:3|max:30",
-            "body" =>"required|min:60|max:500",
+            "description" =>"required|min:60|max:500",
             "image" =>"image|max:10240"
         ]);
     }
@@ -93,7 +93,7 @@ class NewsController extends Controller
     {
         return \Validator::make($request->all(),[
             "title" => "required|min:3|max:30",
-            "body" =>"required|min:60|max:500",
+            "description" =>"required|min:60|max:500",
             "image" =>"required|image|max:10240"
         ]);
     }
